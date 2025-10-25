@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useUserStore } from "@/stores/userStore";
 import { translations } from "@/lib/translations";
@@ -10,6 +11,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { userData } = useUserStore();
   const t = translations[userData.language].dashboard;
+  const learningT = translations[userData.language].learning;
 
   const progressPercentage = (userData.currentSavings / userData.emergencyGoal) * 100;
 
@@ -81,6 +83,61 @@ const Dashboard = () => {
               </span>
             </div>
             <p className="text-sm text-muted-foreground mt-1">{t.thisWeek}</p>
+          </CardContent>
+        </Card>
+
+        {/* Learning Section */}
+        <Card className="shadow-lg">
+          <CardHeader>
+            <CardTitle className="text-xl">{learningT.title}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Tabs defaultValue="fomo" className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="fomo">{learningT.fomoTab}</TabsTrigger>
+                <TabsTrigger value="unexpected">{learningT.unexpectedTab}</TabsTrigger>
+              </TabsList>
+              <TabsContent value="fomo" className="space-y-3 pt-4">
+                <h3 className="font-semibold">{learningT.fomoTitle}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {learningT.fomoContent}
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex gap-2">
+                    <span className="text-primary">•</span>
+                    <span>{learningT.fomoTip1}</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary">•</span>
+                    <span>{learningT.fomoTip2}</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary">•</span>
+                    <span>{learningT.fomoTip3}</span>
+                  </li>
+                </ul>
+              </TabsContent>
+              <TabsContent value="unexpected" className="space-y-3 pt-4">
+                <h3 className="font-semibold">{learningT.unexpectedTitle}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {learningT.unexpectedContent}
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex gap-2">
+                    <span className="text-primary">•</span>
+                    <span>{learningT.unexpectedTip1}</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary">•</span>
+                    <span>{learningT.unexpectedTip2}</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary">•</span>
+                    <span>{learningT.unexpectedTip3}</span>
+                  </li>
+                </ul>
+              </TabsContent>
+            </Tabs>
           </CardContent>
         </Card>
 

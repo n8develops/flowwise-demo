@@ -21,12 +21,12 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Welcome />} />
+          <Route path="/" element={<Pitch />} />
+          <Route path="/welcome" element={<Welcome />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/coach" element={<Coach />} />
           <Route path="/preview" element={<Preview />} />
           <Route path="/transparency" element={<Transparency />} />
-          <Route path="/pitch" element={<Pitch />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

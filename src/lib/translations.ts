@@ -64,6 +64,8 @@ export const translations = {
     },
     learning: {
       title: "Learning Hub",
+      subtitle: "Build better money habits",
+      backToDashboard: "Back to Dashboard",
       fomoTab: "Living Life",
       unexpectedTab: "Unexpected",
       fomoTitle: "Saving Without Missing Out",
@@ -143,6 +145,8 @@ export const translations = {
     },
     learning: {
       title: "Centro de Aprendizaje",
+      subtitle: "Construye mejores hábitos financieros",
+      backToDashboard: "Volver al Panel",
       fomoTab: "Vivir la Vida",
       unexpectedTab: "Inesperado",
       fomoTitle: "Ahorrar Sin Perderte la Vida",

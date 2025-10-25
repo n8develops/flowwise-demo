@@ -11,6 +11,7 @@ import Coach from "./pages/Coach";
 import Preview from "./pages/Preview";
 import Transparency from "./pages/Transparency";
 import Pitch from "./pages/Pitch";
+import Learning from "./pages/Learning";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/coach" element={<Coach />} />
           <Route path="/preview" element={<Preview />} />
           <Route path="/transparency" element={<Transparency />} />
+          <Route path="/learning" element={<Learning />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

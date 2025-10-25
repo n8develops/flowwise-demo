@@ -149,6 +149,15 @@ const Dashboard = () => {
           </Card>
         </div>
 
+        {/* Talk to AI Flow Coach */}
+        <Button
+          onClick={() => navigate('/coach')}
+          className="w-full h-16 text-base font-semibold shadow-lg rounded-xl bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all"
+        >
+          <Sparkles className="h-5 w-5 mr-2" />
+          {t.talkToCoach}
+        </Button>
+
         {/* Recent Transactions */}
         <Card className="relative overflow-hidden border-none shadow-xl">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
@@ -245,15 +254,6 @@ const Dashboard = () => {
             </div>
           </CardContent>
         </Card>
-
-        {/* Talk to AI Flow Coach */}
-        <Button
-          onClick={() => navigate('/coach')}
-          className="w-full h-14 text-base font-semibold shadow-lg rounded-xl bg-gradient-to-r from-primary to-secondary hover:shadow-xl transition-all"
-        >
-          <span className="mr-2">🤖</span>
-          {t.talkToCoach}
-        </Button>
 
         {/* Action Buttons */}
         <div className="space-y-3">

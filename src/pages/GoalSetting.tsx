@@ -46,8 +46,8 @@ const GoalSetting = () => {
       setTimeout(() => {
         setMessages(prev => [...prev, { text: t.round2Question, isUser: false }]);
         setStep('round2');
-      }, 1500);
-    }, 1500);
+      }, 300);
+    }, 600);
   };
 
   const handlePainPointSelect = (painPoint: string, displayText: string) => {
@@ -62,8 +62,8 @@ const GoalSetting = () => {
       setTimeout(() => {
         setMessages(prev => [...prev, { text: t.round3Question, isUser: false }]);
         setStep('round3');
-      }, 1500);
-    }, 1500);
+      }, 300);
+    }, 600);
   };
 
   const handleCommitmentSelect = (commitment: string, displayText: string) => {
@@ -77,8 +77,8 @@ const GoalSetting = () => {
       setTimeout(() => {
         setMessages(prev => [...prev, { text: t.finalMessage, isUser: false }]);
         setStep('complete');
-      }, 1500);
-    }, 1500);
+      }, 300);
+    }, 600);
   };
 
   const handleContinue = () => {

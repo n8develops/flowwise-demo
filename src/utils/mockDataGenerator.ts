@@ -7,6 +7,8 @@ const randomInRange = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
 export const generateMockData = (): Partial<UserData> => {
+  const firstNames = ['Alex', 'Jordan', 'Taylor', 'Morgan', 'Casey', 'Riley', 'Sam', 'Jamie', 'Avery', 'Quinn', 'Dakota', 'Reese', 'Blake', 'Skylar', 'Finley'];
+  const name = firstNames[randomInRange(0, firstNames.length - 1)];
   const income = randomInRange(800, 2000);
   const spending = randomInRange(600, Math.min(income - 100, 1500));
   const currentSavings = randomInRange(50, 300);
@@ -18,6 +20,7 @@ export const generateMockData = (): Partial<UserData> => {
   const behindGoal = randomInRange(20, 60);
 
   return {
+    name,
     income,
     spending,
     currentSavings,

@@ -17,75 +17,81 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-secondary/10">
       <div className="max-w-6xl mx-auto p-8 space-y-8 animate-fade-in pb-20">
+        {/* Main content landmark */}
+        <main id="main-content" className="space-y-8">
         {/* Header */}
-        <div className="flex items-center justify-between py-4">
+        <header className="flex items-center justify-between py-4">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center shadow-lg">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center shadow-lg" aria-hidden="true">
               <Sparkles className="h-6 w-6 text-white" />
             </div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
               Flowwise
             </h1>
           </div>
-          <div className="flex items-center gap-2">
+          <nav className="flex items-center gap-2" aria-label="Main navigation">
             <Button
               onClick={() => navigate('/learning')}
               variant="outline"
               size="sm"
               className="rounded-full border-2 hover:border-primary hover:bg-primary/5"
+              aria-label="Go to learning center"
             >
-              <Lightbulb className="h-4 w-4 mr-1" />
+              <Lightbulb className="h-4 w-4 mr-1" aria-hidden="true" />
               {translations[userData.language].learning.title}
             </Button>
             <LanguageToggle />
-          </div>
-        </div>
+          </nav>
+        </header>
 
         {/* Welcome Message */}
-        <Card className="relative overflow-hidden border-none shadow-xl">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10" />
+        <Card className="relative overflow-hidden border-none shadow-xl" role="banner">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10" aria-hidden="true" />
           <CardContent className="relative p-6">
             <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Welcome, {userData.name}! 👋
+              Welcome, {userData.name}! <span aria-hidden="true">👋</span>
             </h2>
             <p className="text-muted-foreground mt-1">Here's your financial overview</p>
           </CardContent>
         </Card>
 
         {/* Goal Card - Hero Style */}
-        <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent)]" />
+        <section 
+          className="relative overflow-hidden rounded-3xl shadow-2xl"
+          aria-labelledby="goal-heading"
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent" aria-hidden="true" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent)]" aria-hidden="true" />
           <CardContent className="relative p-8 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center" aria-hidden="true">
                 <TrendingUp className="h-6 w-6 text-white" />
               </div>
-              <h2 className="text-2xl font-bold text-white">{t.myGoal}</h2>
+              <h2 id="goal-heading" className="text-2xl font-bold text-white">{t.myGoal}</h2>
             </div>
             
             <div className="space-y-4">
               <div className="flex justify-between text-white/90 text-sm font-medium">
-                <span>${userData.currentSavings} {t.saved}</span>
-                <span>${userData.emergencyGoal} {t.target}</span>
+                <span><span className="sr-only">Currently saved: </span>${userData.currentSavings} {t.saved}</span>
+                <span><span className="sr-only">Target: </span>${userData.emergencyGoal} {t.target}</span>
               </div>
               <div className="relative">
-                <div className="h-4 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm">
+                <div className="h-4 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm" role="progressbar" aria-valuenow={Math.round(progressPercentage)} aria-valuemin={0} aria-valuemax={100} aria-label="Savings progress">
                   <div 
                     className="h-full bg-white rounded-full transition-all duration-500 shadow-lg"
                     style={{ width: `${progressPercentage}%` }}
                   />
                 </div>
               </div>
-              <p className="text-4xl font-bold text-white text-center">
+              <p className="text-4xl font-bold text-white text-center" aria-live="polite">
                 {Math.round(progressPercentage)}%
               </p>
             </div>
           </CardContent>
-        </div>
+        </section>
 
         {/* Snapshot - Modern Cards Grid with Dates */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" role="region" aria-label="Financial snapshot">
           <Card className="relative overflow-hidden border-none shadow-xl">
             <div className="absolute inset-0 bg-gradient-to-br from-success/20 to-success/5" />
             <CardContent className="relative p-8 space-y-4">
@@ -153,66 +159,67 @@ const Dashboard = () => {
         <Button
           onClick={() => navigate('/coach')}
           className="w-full h-16 text-base font-semibold shadow-lg rounded-xl bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all"
+          aria-label="Talk to your AI financial coach"
         >
-          <Sparkles className="h-5 w-5 mr-2" />
+          <Sparkles className="h-5 w-5 mr-2" aria-hidden="true" />
           {t.talkToCoach}
         </Button>
 
         {/* Recent Transactions */}
-        <Card className="relative overflow-hidden border-none shadow-xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
+        <Card className="relative overflow-hidden border-none shadow-xl" role="region" aria-labelledby="transactions-heading">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" aria-hidden="true" />
           <CardContent className="relative p-8">
-            <h3 className="text-xl font-bold mb-6">Recent Transactions</h3>
-            <div className="space-y-3">
-              <div className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
+            <h3 id="transactions-heading" className="text-xl font-bold mb-6">Recent Transactions</h3>
+            <ul className="space-y-3" role="list">
+              <li className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-destructive/20 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-destructive/20 flex items-center justify-center" aria-hidden="true">
                     🍔
                   </div>
                   <div>
                     <p className="font-semibold">Fast Food</p>
-                    <p className="text-sm text-muted-foreground">Oct 24, 2025</p>
+                    <p className="text-sm text-muted-foreground"><time dateTime="2025-10-24">Oct 24, 2025</time></p>
                   </div>
                 </div>
-                <span className="text-destructive font-bold">-$45.00</span>
-              </div>
-              <div className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
+                <span className="text-destructive font-bold" aria-label="Expense of 45 dollars">-$45.00</span>
+              </li>
+              <li className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-destructive/20 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-destructive/20 flex items-center justify-center" aria-hidden="true">
                     🛒
                   </div>
                   <div>
                     <p className="font-semibold">Groceries</p>
-                    <p className="text-sm text-muted-foreground">Oct 23, 2025</p>
+                    <p className="text-sm text-muted-foreground"><time dateTime="2025-10-23">Oct 23, 2025</time></p>
                   </div>
                 </div>
-                <span className="text-destructive font-bold">-$120.00</span>
-              </div>
-              <div className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
+                <span className="text-destructive font-bold" aria-label="Expense of 120 dollars">-$120.00</span>
+              </li>
+              <li className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-destructive/20 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-destructive/20 flex items-center justify-center" aria-hidden="true">
                     ☕
                   </div>
                   <div>
                     <p className="font-semibold">Coffee Shop</p>
-                    <p className="text-sm text-muted-foreground">Oct 22, 2025</p>
+                    <p className="text-sm text-muted-foreground"><time dateTime="2025-10-22">Oct 22, 2025</time></p>
                   </div>
                 </div>
-                <span className="text-destructive font-bold">-$35.00</span>
-              </div>
-              <div className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
+                <span className="text-destructive font-bold" aria-label="Expense of 35 dollars">-$35.00</span>
+              </li>
+              <li className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-success/20 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-success/20 flex items-center justify-center" aria-hidden="true">
                     💰
                   </div>
                   <div>
                     <p className="font-semibold">Salary</p>
-                    <p className="text-sm text-muted-foreground">Oct 20, 2025</p>
+                    <p className="text-sm text-muted-foreground"><time dateTime="2025-10-20">Oct 20, 2025</time></p>
                   </div>
                 </div>
-                <span className="text-success font-bold">+$1,200.00</span>
-              </div>
-            </div>
+                <span className="text-success font-bold" aria-label="Income of 1200 dollars">+$1,200.00</span>
+              </li>
+            </ul>
           </CardContent>
         </Card>
 
@@ -271,11 +278,11 @@ const Dashboard = () => {
         {/* Success Message */}
         {userData.adjustmentConfirmed && (
           <Card className="relative overflow-hidden border-none shadow-xl animate-slide-up">
-            <div className="absolute inset-0 bg-gradient-to-br from-success/20 to-success/5" />
+            <div className="absolute inset-0 bg-gradient-to-br from-success/20 to-success/5" aria-hidden="true" />
             <CardContent className="relative p-6">
               <div className="flex items-center gap-3">
                 <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-success/20 flex items-center justify-center">
-                  <span className="text-xl">✅</span>
+                  <span className="text-xl" aria-hidden="true">✅</span>
                 </div>
                 <p className="text-sm font-medium">
                   {translations[userData.language].preview.successMessage}
@@ -284,6 +291,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         )}
+        </main>
       </div>
     </div>
   );

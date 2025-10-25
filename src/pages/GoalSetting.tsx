@@ -87,11 +87,11 @@ const GoalSetting = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
-      <div className="max-w-2xl mx-auto p-6 space-y-6">
+      <main id="main-content" className="max-w-2xl mx-auto p-6 space-y-6">
         {/* Header with Crystal Ball */}
-        <div className="flex flex-col items-center justify-center gap-4 py-6">
+        <header className="flex flex-col items-center justify-center gap-4 py-6">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center shadow-lg" aria-hidden="true">
               <Sparkles className="h-6 w-6 text-white" />
             </div>
             <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -100,7 +100,7 @@ const GoalSetting = () => {
           </div>
           
           {/* Crystal Ball Visualization */}
-          <div className="relative w-32 h-32 flex items-center justify-center">
+          <div className="relative w-32 h-32 flex items-center justify-center" role="img" aria-label={`Goal clarity: ${crystalClarity} percent`}>
             {/* Outer glow */}
             <div 
               className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-xl transition-all duration-1000"
@@ -108,6 +108,7 @@ const GoalSetting = () => {
                 opacity: crystalClarity / 100,
                 transform: `scale(${1 + crystalClarity / 200})`
               }}
+              aria-hidden="true"
             />
             {/* Crystal ball */}
             <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 backdrop-blur-sm border-2 border-primary/40 flex items-center justify-center shadow-2xl transition-all duration-1000"
@@ -147,18 +148,18 @@ const GoalSetting = () => {
           </div>
           
           {/* Progress indicator */}
-          <div className="flex gap-2">
-            <div className={`w-3 h-3 rounded-full transition-all duration-500 ${crystalClarity >= 33 ? 'bg-primary' : 'bg-muted'}`} />
-            <div className={`w-3 h-3 rounded-full transition-all duration-500 ${crystalClarity >= 66 ? 'bg-primary' : 'bg-muted'}`} />
-            <div className={`w-3 h-3 rounded-full transition-all duration-500 ${crystalClarity >= 100 ? 'bg-primary' : 'bg-muted'}`} />
+          <div className="flex gap-2" role="progressbar" aria-valuenow={crystalClarity} aria-valuemin={0} aria-valuemax={100} aria-label="Goal setting progress">
+            <div className={`w-3 h-3 rounded-full transition-all duration-500 ${crystalClarity >= 33 ? 'bg-primary' : 'bg-muted'}`} aria-label={crystalClarity >= 33 ? 'Step 1 complete' : 'Step 1 incomplete'} />
+            <div className={`w-3 h-3 rounded-full transition-all duration-500 ${crystalClarity >= 66 ? 'bg-primary' : 'bg-muted'}`} aria-label={crystalClarity >= 66 ? 'Step 2 complete' : 'Step 2 incomplete'} />
+            <div className={`w-3 h-3 rounded-full transition-all duration-500 ${crystalClarity >= 100 ? 'bg-primary' : 'bg-muted'}`} aria-label={crystalClarity >= 100 ? 'Step 3 complete' : 'Step 3 incomplete'} />
           </div>
-        </div>
+        </header>
 
         {/* Chat Messages */}
-        <div className="space-y-4 animate-fade-in">
+        <div className="space-y-4 animate-fade-in" role="log" aria-live="polite" aria-label="Conversation with AI coach">
           {messages.map((message, index) => (
             <div key={index} className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}>
-              <Card className={`max-w-[85%] shadow-md ${message.isUser ? 'bg-primary text-primary-foreground' : 'bg-card'}`}>
+              <Card className={`max-w-[85%] shadow-md ${message.isUser ? 'bg-primary text-primary-foreground' : 'bg-card'}`} role="article" aria-label={message.isUser ? 'Your message' : 'Coach message'}>
                 <CardContent className="pt-4 pb-4 px-5">
                   <p className="text-sm leading-relaxed">{message.text}</p>
                 </CardContent>
@@ -183,13 +184,14 @@ const GoalSetting = () => {
 
           {/* Round 1: Choose Savings Goal */}
           {step === 'round1' && !showTyping && (
-            <div className="grid grid-cols-1 gap-3 pt-4 animate-slide-up">
+            <div className="grid grid-cols-1 gap-3 pt-4 animate-slide-up" role="group" aria-label="Choose your savings goal">
               <Button
                 onClick={() => handleGoalSelect('emergency', t.goal1)}
                 variant="outline"
                 className="h-20 text-sm font-medium hover:border-primary hover:bg-primary/5 flex flex-col items-start justify-center p-4"
+                aria-label={`Choose goal: ${t.goal1}`}
               >
-                <span className="text-2xl mb-1">💰</span>
+                <span className="text-2xl mb-1" aria-hidden="true">💰</span>
                 <span className="font-semibold">{t.goal1}</span>
               </Button>
               <Button
@@ -278,8 +280,9 @@ const GoalSetting = () => {
                 onClick={handleContinue}
                 className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-primary to-secondary hover:shadow-xl transition-all"
                 size="lg"
+                aria-label="Continue to your personalized dashboard"
               >
-                {t.continueToDashboard} ✨
+                {t.continueToDashboard} <span aria-hidden="true">✨</span>
               </Button>
             </div>
           )}
@@ -287,7 +290,7 @@ const GoalSetting = () => {
 
         {/* Disclaimer */}
         {step !== 'complete' && (
-          <Card className="bg-muted/50 border-0 mt-8">
+          <Card className="bg-muted/50 border-0 mt-8" role="note" aria-label="Disclaimer">
             <CardContent className="pt-4 pb-4">
               <p className="text-xs text-muted-foreground text-center leading-relaxed">
                 {translations[userData.language].coach.disclaimer}
@@ -295,7 +298,7 @@ const GoalSetting = () => {
             </CardContent>
           </Card>
         )}
-      </div>
+      </main>
     </div>
   );
 };

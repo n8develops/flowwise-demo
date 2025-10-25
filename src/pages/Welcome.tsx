@@ -33,20 +33,20 @@ const Welcome = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted flex items-center justify-center p-4">
-      <div className="w-full max-w-md space-y-6 animate-slide-up">
-        <div className="text-center space-y-3">
+      <main id="main-content" className="w-full max-w-md space-y-6 animate-slide-up">
+        <header className="text-center space-y-3">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             {t.title}
           </h1>
           <p className="text-lg text-muted-foreground">
             {t.subtitle}
           </p>
-        </div>
+        </header>
 
         <Card className="border-2 shadow-lg">
           <CardContent className="pt-6 space-y-4">
-            <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg">
-              <Shield className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+            <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg" role="note" aria-label="Security information">
+              <Shield className="h-6 w-6 text-primary flex-shrink-0 mt-1" aria-hidden="true" />
               <p className="text-sm leading-relaxed">
                 {t.trustMessage}
               </p>
@@ -57,42 +57,47 @@ const Welcome = () => {
                 onClick={() => setShowBanks(true)}
                 className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-primary to-secondary hover:opacity-90"
                 size="lg"
+                aria-label="Connect your bank account"
               >
-                <CreditCard className="mr-2 h-5 w-5" />
+                <CreditCard className="mr-2 h-5 w-5" aria-hidden="true" />
                 {t.connectPlaid}
               </Button>
             ) : (
               <div className="space-y-3">
-                <p className="text-center font-semibold text-sm">{t.selectYourBank}</p>
-                {banks.map((bank) => (
-                  <button
-                    key={bank.id}
-                    onClick={() => handleBankSelect(bank.id)}
-                    disabled={selectedBank !== null}
-                    className="w-full p-4 border-2 rounded-lg hover:border-primary hover:bg-accent transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3"
-                  >
-                    <div className={`w-12 h-12 ${bank.color} rounded-lg flex items-center justify-center text-2xl`}>
-                      {bank.logo}
-                    </div>
-                    <span className="font-medium">{bank.name}</span>
-                    {selectedBank === bank.id && (
-                      <span className="ml-auto text-sm text-primary animate-pulse">
-                        {t.connecting}
-                      </span>
-                    )}
-                  </button>
-                ))}
+                <p className="text-center font-semibold text-sm" id="bank-selection-label">{t.selectYourBank}</p>
+                <div role="list" aria-labelledby="bank-selection-label">
+                  {banks.map((bank) => (
+                    <button
+                      key={bank.id}
+                      onClick={() => handleBankSelect(bank.id)}
+                      disabled={selectedBank !== null}
+                      className="w-full p-4 border-2 rounded-lg hover:border-primary hover:bg-accent transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3"
+                      aria-label={`Select ${bank.name}`}
+                      aria-busy={selectedBank === bank.id}
+                    >
+                      <div className={`w-12 h-12 ${bank.color} rounded-lg flex items-center justify-center text-2xl`} aria-hidden="true">
+                        {bank.logo}
+                      </div>
+                      <span className="font-medium">{bank.name}</span>
+                      {selectedBank === bank.id && (
+                        <span className="ml-auto text-sm text-primary animate-pulse" aria-live="polite">
+                          {t.connecting}
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
 
             <div className="mt-4 text-center">
-              <button className="text-sm text-primary hover:underline">
+              <button className="text-sm text-primary hover:underline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded" aria-label="Contact a human financial advisor">
                 {t.humanAdvisor}
               </button>
             </div>
           </CardContent>
         </Card>
-      </div>
+      </main>
     </div>
   );
 };

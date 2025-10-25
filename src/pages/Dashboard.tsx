@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { LanguageToggle } from "@/components/LanguageToggle";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useUserStore } from "@/stores/userStore";
 import { translations } from "@/lib/translations";
 import { TrendingUp, Wallet, ShoppingBag, Lightbulb, Shield, Sparkles } from "lucide-react";
@@ -40,6 +41,7 @@ const Dashboard = () => {
               <Lightbulb className="h-4 w-4 mr-1" aria-hidden="true" />
               {translations[userData.language].learning.title}
             </Button>
+            <ThemeToggle />
             <LanguageToggle />
           </nav>
         </header>

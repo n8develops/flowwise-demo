@@ -98,6 +98,12 @@ export const translations = {
       finalMessage: "🎉 Perfect! Your goal is crystal clear now. Let's take you to your personalized dashboard!",
       continueToDashboard: "View My Dashboard",
     },
+    theme: {
+      toggleDarkMode: "Toggle dark mode",
+      light: "Light",
+      dark: "Dark",
+      system: "System",
+    },
   },
   es: {
     welcome: {
@@ -197,6 +203,12 @@ export const translations = {
       commitment3: "Flexible - Ahorraré cuando pueda",
       finalMessage: "🎉 ¡Perfecto! Tu meta ahora está cristalina. ¡Vamos a tu panel personalizado!",
       continueToDashboard: "Ver Mi Panel",
+    },
+    theme: {
+      toggleDarkMode: "Cambiar modo oscuro",
+      light: "Claro",
+      dark: "Oscuro",
+      system: "Sistema",
     },
   },
 };

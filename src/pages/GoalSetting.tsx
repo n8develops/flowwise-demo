@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useUserStore } from "@/stores/userStore";
 import { translations } from "@/lib/translations";
 import { Sparkles } from "lucide-react";
@@ -86,7 +87,10 @@ const GoalSetting = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted relative">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <main id="main-content" className="max-w-2xl mx-auto p-6 space-y-6">
         {/* Header with Crystal Ball */}
         <header className="flex flex-col items-center justify-center gap-4 py-6">

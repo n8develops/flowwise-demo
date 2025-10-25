@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useUserStore } from "@/stores/userStore";
 import { translations } from "@/lib/translations";
 import { generateMockData } from "@/utils/mockDataGenerator";
@@ -32,7 +33,10 @@ const Welcome = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted flex items-center justify-center p-4 relative">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <main id="main-content" className="w-full max-w-md space-y-6 animate-slide-up">
         <header className="text-center space-y-3">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">

@@ -5,7 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useUserStore } from "@/stores/userStore";
 import { translations } from "@/lib/translations";
-import { TrendingUp, Wallet, ShoppingBag, Lightbulb, Shield } from "lucide-react";
+import { TrendingUp, Wallet, ShoppingBag, Lightbulb, Shield, Sparkles } from "lucide-react";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -19,11 +19,38 @@ const Dashboard = () => {
       <div className="max-w-md mx-auto p-4 space-y-6 animate-fade-in pb-20">
         {/* Header */}
         <div className="flex items-center justify-between py-4">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-            Flowwise
-          </h1>
-          <LanguageToggle />
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center shadow-lg">
+              <Sparkles className="h-6 w-6 text-white" />
+            </div>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+              Flowwise
+            </h1>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button
+              onClick={() => navigate('/learning')}
+              variant="outline"
+              size="sm"
+              className="rounded-full border-2 hover:border-primary hover:bg-primary/5"
+            >
+              <Lightbulb className="h-4 w-4 mr-1" />
+              {translations[userData.language].learning.title}
+            </Button>
+            <LanguageToggle />
+          </div>
         </div>
+
+        {/* Welcome Message */}
+        <Card className="relative overflow-hidden border-none shadow-xl">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10" />
+          <CardContent className="relative p-6">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Welcome, {userData.name}! 👋
+            </h2>
+            <p className="text-muted-foreground mt-1">Here's your financial overview</p>
+          </CardContent>
+        </Card>
 
         {/* Goal Card - Hero Style */}
         <div className="relative overflow-hidden rounded-3xl shadow-2xl">
@@ -57,7 +84,7 @@ const Dashboard = () => {
           </CardContent>
         </div>
 
-        {/* Snapshot - Modern Cards Grid */}
+        {/* Snapshot - Modern Cards Grid with Visual Chart */}
         <div className="grid grid-cols-2 gap-4">
           <Card className="relative overflow-hidden border-none shadow-xl">
             <div className="absolute inset-0 bg-gradient-to-br from-success/20 to-success/5" />
@@ -67,6 +94,15 @@ const Dashboard = () => {
               </div>
               <p className="text-xs text-muted-foreground uppercase tracking-wide">{t.income}</p>
               <p className="text-2xl font-bold text-success">${userData.income}</p>
+              <div className="flex items-end gap-1 h-12 mt-2">
+                {[40, 55, 45, 60, 70, 65, 80].map((height, i) => (
+                  <div
+                    key={i}
+                    className="flex-1 bg-success/30 rounded-t transition-all hover:bg-success/50"
+                    style={{ height: `${height}%` }}
+                  />
+                ))}
+              </div>
             </CardContent>
           </Card>
 
@@ -78,6 +114,15 @@ const Dashboard = () => {
               </div>
               <p className="text-xs text-muted-foreground uppercase tracking-wide">{t.spending}</p>
               <p className="text-2xl font-bold text-destructive">${userData.spending}</p>
+              <div className="flex items-end gap-1 h-12 mt-2">
+                {[60, 70, 55, 75, 65, 80, 70].map((height, i) => (
+                  <div
+                    key={i}
+                    className="flex-1 bg-destructive/30 rounded-t transition-all hover:bg-destructive/50"
+                    style={{ height: `${height}%` }}
+                  />
+                ))}
+              </div>
             </CardContent>
           </Card>
         </div>
@@ -132,25 +177,14 @@ const Dashboard = () => {
             {t.talkToCoach}
           </Button>
 
-          <div className="grid grid-cols-2 gap-3">
-            <Button
-              onClick={() => navigate('/learning')}
-              variant="outline"
-              className="h-14 rounded-xl border-2 hover:border-primary hover:bg-primary/5"
-            >
-              <Lightbulb className="h-4 w-4 mr-2" />
-              {translations[userData.language].learning.title}
-            </Button>
-
-            <Button
-              onClick={() => navigate('/transparency')}
-              variant="outline"
-              className="h-14 rounded-xl border-2 hover:border-secondary hover:bg-secondary/5"
-            >
-              <Shield className="h-4 w-4 mr-2" />
-              {translations[userData.language].transparency.title}
-            </Button>
-          </div>
+          <Button
+            onClick={() => navigate('/transparency')}
+            variant="outline"
+            className="w-full h-14 rounded-xl border-2 hover:border-secondary hover:bg-secondary/5"
+          >
+            <Shield className="h-4 w-4 mr-2" />
+            {translations[userData.language].transparency.title}
+          </Button>
         </div>
 
         {/* Success Message */}

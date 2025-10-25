@@ -4,13 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useUserStore } from "@/stores/userStore";
 import { translations } from "@/lib/translations";
-import { Shield, Building2 } from "lucide-react";
+import { Shield, Building2, CreditCard } from "lucide-react";
 
 const Welcome = () => {
   const { userData, connectBank } = useUserStore();
   const navigate = useNavigate();
   const t = translations[userData.language].welcome;
   const [selectedBank, setSelectedBank] = useState<string | null>(null);
+  const [showBanks, setShowBanks] = useState(false);
 
   const banks = [
     { id: 'chase', name: 'Chase Bank', color: 'bg-blue-600' },
@@ -48,27 +49,38 @@ const Welcome = () => {
               </p>
             </div>
 
-            <div className="space-y-3">
-              <p className="text-center font-semibold text-sm">{t.selectYourBank}</p>
-              {banks.map((bank) => (
-                <button
-                  key={bank.id}
-                  onClick={() => handleBankSelect(bank.id)}
-                  disabled={selectedBank !== null}
-                  className="w-full p-4 border-2 rounded-lg hover:border-primary hover:bg-accent transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3"
-                >
-                  <div className={`w-10 h-10 ${bank.color} rounded flex items-center justify-center`}>
-                    <Building2 className="h-6 w-6 text-white" />
-                  </div>
-                  <span className="font-medium">{bank.name}</span>
-                  {selectedBank === bank.id && (
-                    <span className="ml-auto text-sm text-primary animate-pulse">
-                      {t.connecting}
-                    </span>
-                  )}
-                </button>
-              ))}
-            </div>
+            {!showBanks ? (
+              <Button
+                onClick={() => setShowBanks(true)}
+                className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+                size="lg"
+              >
+                <CreditCard className="mr-2 h-5 w-5" />
+                {t.connectPlaid}
+              </Button>
+            ) : (
+              <div className="space-y-3">
+                <p className="text-center font-semibold text-sm">{t.selectYourBank}</p>
+                {banks.map((bank) => (
+                  <button
+                    key={bank.id}
+                    onClick={() => handleBankSelect(bank.id)}
+                    disabled={selectedBank !== null}
+                    className="w-full p-4 border-2 rounded-lg hover:border-primary hover:bg-accent transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3"
+                  >
+                    <div className={`w-10 h-10 ${bank.color} rounded flex items-center justify-center`}>
+                      <Building2 className="h-6 w-6 text-white" />
+                    </div>
+                    <span className="font-medium">{bank.name}</span>
+                    {selectedBank === bank.id && (
+                      <span className="ml-auto text-sm text-primary animate-pulse">
+                        {t.connecting}
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
 
             <div className="mt-4 text-center">
               <button className="text-sm text-primary hover:underline">

@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-      <div className="max-w-md mx-auto p-4 space-y-6 animate-fade-in pb-20">
+      <div className="max-w-6xl mx-auto p-8 space-y-8 animate-fade-in pb-20">
         {/* Header */}
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center gap-2">
@@ -84,48 +84,128 @@ const Dashboard = () => {
           </CardContent>
         </div>
 
-        {/* Snapshot - Modern Cards Grid with Visual Chart */}
-        <div className="grid grid-cols-2 gap-4">
+        {/* Snapshot - Modern Cards Grid with Dates */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card className="relative overflow-hidden border-none shadow-xl">
             <div className="absolute inset-0 bg-gradient-to-br from-success/20 to-success/5" />
-            <CardContent className="relative p-6 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-success/20 flex items-center justify-center">
-                <Wallet className="h-5 w-5 text-success" />
+            <CardContent className="relative p-8 space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-success/20 flex items-center justify-center">
+                    <Wallet className="h-6 w-6 text-success" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground uppercase tracking-wide">{t.income}</p>
+                    <p className="text-3xl font-bold text-success">${userData.income}</p>
+                  </div>
+                </div>
               </div>
-              <p className="text-xs text-muted-foreground uppercase tracking-wide">{t.income}</p>
-              <p className="text-2xl font-bold text-success">${userData.income}</p>
-              <div className="flex items-end gap-1 h-12 mt-2">
-                {[40, 55, 45, 60, 70, 65, 80].map((height, i) => (
-                  <div
-                    key={i}
-                    className="flex-1 bg-success/30 rounded-t transition-all hover:bg-success/50"
-                    style={{ height: `${height}%` }}
-                  />
-                ))}
+              <div className="space-y-3 mt-6">
+                <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
+                  <span className="text-sm">Oct 20, 2025</span>
+                  <span className="text-success font-semibold">+$1,200</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
+                  <span className="text-sm">Oct 13, 2025</span>
+                  <span className="text-success font-semibold">+$1,200</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
+                  <span className="text-sm">Oct 6, 2025</span>
+                  <span className="text-success font-semibold">+$1,200</span>
+                </div>
               </div>
             </CardContent>
           </Card>
 
           <Card className="relative overflow-hidden border-none shadow-xl">
             <div className="absolute inset-0 bg-gradient-to-br from-destructive/20 to-destructive/5" />
-            <CardContent className="relative p-6 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-destructive/20 flex items-center justify-center">
-                <ShoppingBag className="h-5 w-5 text-destructive" />
+            <CardContent className="relative p-8 space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-destructive/20 flex items-center justify-center">
+                    <ShoppingBag className="h-6 w-6 text-destructive" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground uppercase tracking-wide">{t.spending}</p>
+                    <p className="text-3xl font-bold text-destructive">${userData.spending}</p>
+                  </div>
+                </div>
               </div>
-              <p className="text-xs text-muted-foreground uppercase tracking-wide">{t.spending}</p>
-              <p className="text-2xl font-bold text-destructive">${userData.spending}</p>
-              <div className="flex items-end gap-1 h-12 mt-2">
-                {[60, 70, 55, 75, 65, 80, 70].map((height, i) => (
-                  <div
-                    key={i}
-                    className="flex-1 bg-destructive/30 rounded-t transition-all hover:bg-destructive/50"
-                    style={{ height: `${height}%` }}
-                  />
-                ))}
+              <div className="space-y-3 mt-6">
+                <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
+                  <span className="text-sm">Oct 24, 2025</span>
+                  <span className="text-destructive font-semibold">-$45</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
+                  <span className="text-sm">Oct 23, 2025</span>
+                  <span className="text-destructive font-semibold">-$120</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
+                  <span className="text-sm">Oct 22, 2025</span>
+                  <span className="text-destructive font-semibold">-$35</span>
+                </div>
               </div>
             </CardContent>
           </Card>
         </div>
+
+        {/* Recent Transactions */}
+        <Card className="relative overflow-hidden border-none shadow-xl">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
+          <CardContent className="relative p-8">
+            <h3 className="text-xl font-bold mb-6">Recent Transactions</h3>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-destructive/20 flex items-center justify-center">
+                    🍔
+                  </div>
+                  <div>
+                    <p className="font-semibold">Fast Food</p>
+                    <p className="text-sm text-muted-foreground">Oct 24, 2025</p>
+                  </div>
+                </div>
+                <span className="text-destructive font-bold">-$45.00</span>
+              </div>
+              <div className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-destructive/20 flex items-center justify-center">
+                    🛒
+                  </div>
+                  <div>
+                    <p className="font-semibold">Groceries</p>
+                    <p className="text-sm text-muted-foreground">Oct 23, 2025</p>
+                  </div>
+                </div>
+                <span className="text-destructive font-bold">-$120.00</span>
+              </div>
+              <div className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-destructive/20 flex items-center justify-center">
+                    ☕
+                  </div>
+                  <div>
+                    <p className="font-semibold">Coffee Shop</p>
+                    <p className="text-sm text-muted-foreground">Oct 22, 2025</p>
+                  </div>
+                </div>
+                <span className="text-destructive font-bold">-$35.00</span>
+              </div>
+              <div className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-success/20 flex items-center justify-center">
+                    💰
+                  </div>
+                  <div>
+                    <p className="font-semibold">Salary</p>
+                    <p className="text-sm text-muted-foreground">Oct 20, 2025</p>
+                  </div>
+                </div>
+                <span className="text-success font-bold">+$1,200.00</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Behind Goal Message - Floating Card */}
         <Card className="relative overflow-hidden border-none shadow-xl">

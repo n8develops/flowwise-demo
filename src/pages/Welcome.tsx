@@ -4,27 +4,30 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useUserStore } from "@/stores/userStore";
 import { translations } from "@/lib/translations";
-import { Shield, Building2, CreditCard } from "lucide-react";
+import { generateMockData } from "@/utils/mockDataGenerator";
+import { Shield, CreditCard } from "lucide-react";
 
 const Welcome = () => {
-  const { userData, connectBank } = useUserStore();
+  const { userData, connectBank, setUserData } = useUserStore();
   const navigate = useNavigate();
   const t = translations[userData.language].welcome;
   const [selectedBank, setSelectedBank] = useState<string | null>(null);
   const [showBanks, setShowBanks] = useState(false);
 
   const banks = [
-    { id: 'chase', name: 'Chase Bank', color: 'bg-blue-600' },
-    { id: 'bofa', name: 'Bank of America', color: 'bg-red-600' },
-    { id: 'wells', name: 'Wells Fargo', color: 'bg-yellow-600' },
-    { id: 'citi', name: 'Citibank', color: 'bg-blue-500' },
+    { id: 'chase', name: 'Chase Bank', logo: '🏦', color: 'bg-blue-600' },
+    { id: 'bofa', name: 'Bank of America', logo: '🏛️', color: 'bg-red-600' },
+    { id: 'wells', name: 'Wells Fargo', logo: '🐴', color: 'bg-yellow-600' },
+    { id: 'citi', name: 'Citibank', logo: '🌐', color: 'bg-blue-500' },
   ];
 
   const handleBankSelect = (bankId: string) => {
     setSelectedBank(bankId);
     setTimeout(() => {
       connectBank();
-      navigate('/dashboard');
+      const mockData = generateMockData();
+      setUserData(mockData);
+      navigate('/goal-setting');
     }, 1000);
   };
 
@@ -68,8 +71,8 @@ const Welcome = () => {
                     disabled={selectedBank !== null}
                     className="w-full p-4 border-2 rounded-lg hover:border-primary hover:bg-accent transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3"
                   >
-                    <div className={`w-10 h-10 ${bank.color} rounded flex items-center justify-center`}>
-                      <Building2 className="h-6 w-6 text-white" />
+                    <div className={`w-12 h-12 ${bank.color} rounded-lg flex items-center justify-center text-2xl`}>
+                      {bank.logo}
                     </div>
                     <span className="font-medium">{bank.name}</span>
                     {selectedBank === bank.id && (

@@ -12,6 +12,7 @@ import Preview from "./pages/Preview";
 import Transparency from "./pages/Transparency";
 import Pitch from "./pages/Pitch";
 import Learning from "./pages/Learning";
+import GoalSetting from "./pages/GoalSetting";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Pitch />} />
           <Route path="/welcome" element={<Welcome />} />
+          <Route path="/goal-setting" element={<GoalSetting />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/coach" element={<Coach />} />
           <Route path="/preview" element={<Preview />} />

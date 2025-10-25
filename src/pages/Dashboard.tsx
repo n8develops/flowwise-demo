@@ -219,7 +219,7 @@ const Dashboard = () => {
                 <p className="text-sm leading-relaxed">
                   {t.behindMessage
                     .replace('{amount}', userData.behindGoal.toString())
-                    .replace('{expense}', `$${userData.surpriseAmount} ${userData.surpriseExpense}`)}
+                    .replace('{expense}', `${userData.surpriseAmount} ${userData.surpriseExpense}`)}
                 </p>
                 <p className="text-sm font-semibold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
                   {t.okayMessage}
@@ -246,16 +246,17 @@ const Dashboard = () => {
           </CardContent>
         </Card>
 
+        {/* Talk to AI Flow Coach */}
+        <Button
+          onClick={() => navigate('/coach')}
+          className="w-full h-14 text-base font-semibold shadow-lg rounded-xl bg-gradient-to-r from-primary to-secondary hover:shadow-xl transition-all"
+        >
+          <span className="mr-2">🤖</span>
+          {t.talkToCoach}
+        </Button>
+
         {/* Action Buttons */}
         <div className="space-y-3">
-          <Button
-            onClick={() => navigate('/coach')}
-            className="w-full h-16 text-lg font-semibold shadow-xl rounded-2xl bg-gradient-to-r from-primary to-secondary hover:shadow-2xl transition-all"
-            size="lg"
-          >
-            <span className="mr-2">🤖</span>
-            {t.talkToCoach}
-          </Button>
 
           <Button
             onClick={() => navigate('/transparency')}

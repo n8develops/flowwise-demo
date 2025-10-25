@@ -1,23 +1,14 @@
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { PlaidModal } from "@/components/PlaidModal";
 import { useUserStore } from "@/stores/userStore";
 import { translations } from "@/lib/translations";
-import { Shield } from "lucide-react";
+import { Shield, Info } from "lucide-react";
 
 const Welcome = () => {
-  const [plaidOpen, setPlaidOpen] = useState(false);
   const { userData } = useUserStore();
   const navigate = useNavigate();
   const t = translations[userData.language].welcome;
-
-  useEffect(() => {
-    if (userData.bankConnected) {
-      navigate('/dashboard');
-    }
-  }, [userData.bankConnected, navigate]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted flex items-center justify-center p-4">
@@ -29,6 +20,10 @@ const Welcome = () => {
           <p className="text-lg text-muted-foreground">
             {t.subtitle}
           </p>
+          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground/70 pt-2">
+            <Info className="h-4 w-4" />
+            <span>Demo Application</span>
+          </div>
         </div>
 
         <Card className="border-2 shadow-lg">
@@ -41,7 +36,7 @@ const Welcome = () => {
             </div>
 
             <Button
-              onClick={() => setPlaidOpen(true)}
+              onClick={() => navigate('/dashboard')}
               className="w-full h-14 text-lg font-semibold shadow-md hover:shadow-lg transition-all"
               size="lg"
             >
@@ -56,8 +51,6 @@ const Welcome = () => {
           </CardContent>
         </Card>
       </div>
-
-      <PlaidModal open={plaidOpen} onOpenChange={setPlaidOpen} />
     </div>
   );
 };

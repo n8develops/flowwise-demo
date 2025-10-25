@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { LanguageToggle } from "@/components/LanguageToggle";
-import { PlaidModal } from "@/components/PlaidModal";
 import { useUserStore } from "@/stores/userStore";
 import { translations } from "@/lib/translations";
 
@@ -12,7 +10,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { userData } = useUserStore();
   const t = translations[userData.language].dashboard;
-  const [isPlaidModalOpen, setIsPlaidModalOpen] = useState(false);
 
   const progressPercentage = (userData.currentSavings / userData.emergencyGoal) * 100;
 
@@ -104,20 +101,7 @@ const Dashboard = () => {
           >
             {translations[userData.language].transparency.title}
           </Button>
-
-          <Button
-            onClick={() => setIsPlaidModalOpen(true)}
-            variant="outline"
-            className="w-full"
-          >
-            Reconnect Bank
-          </Button>
         </div>
-
-        <PlaidModal 
-          open={isPlaidModalOpen} 
-          onOpenChange={setIsPlaidModalOpen} 
-        />
 
         {userData.adjustmentConfirmed && (
           <Card className="border-success bg-success/5 shadow-lg animate-slide-up">

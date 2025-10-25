@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useUserStore } from "@/stores/userStore";
 import { translations } from "@/lib/translations";
 
-export function ThemeToggle() {
+export const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
   const { userData } = useUserStore();
   const t = translations[userData.language].theme;

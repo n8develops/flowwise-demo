@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { usePlaidLink } from "react-plaid-link";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Button } from "./ui/button";
 import { useUserStore } from "@/stores/userStore";
 import { translations } from "@/lib/translations";
 import { useToast } from "@/hooks/use-toast";
-import { Check } from "lucide-react";
+import { Check, AlertCircle } from "lucide-react";
 
 interface PlaidModalProps {
   open: boolean;
@@ -12,22 +13,63 @@ interface PlaidModalProps {
 }
 
 export const PlaidModal = ({ open, onOpenChange }: PlaidModalProps) => {
-  const [step, setStep] = useState<'select' | 'connecting' | 'success'>('select');
+  const [linkToken, setLinkToken] = useState<string | null>(null);
+  const [step, setStep] = useState<'loading' | 'ready' | 'connecting' | 'success' | 'error'>('loading');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const { userData, connectBank } = useUserStore();
   const { toast } = useToast();
   const t = translations[userData.language].plaid;
 
-  const banks = [
-    { id: 'chase', name: t.chase },
-    { id: 'wells', name: t.wellsFargo },
-    { id: 'bofa', name: t.bofa },
-  ];
+  // Fetch link token when modal opens
+  useEffect(() => {
+    if (open && !linkToken) {
+      fetchLinkToken();
+    }
+  }, [open]);
 
-  const handleBankSelect = async (bankId: string) => {
-    setStep('connecting');
-    
-    // Simulate API call
-    setTimeout(() => {
+  const fetchLinkToken = async () => {
+    try {
+      setStep('loading');
+      const response = await fetch('https://pxglgxmcxaduyfuwwnxy.supabase.co/functions/v1/create-link-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to initialize Plaid');
+      }
+
+      setLinkToken(data.link_token);
+      setStep('ready');
+    } catch (error) {
+      console.error('Error fetching link token:', error);
+      setStep('error');
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to initialize Plaid');
+    }
+  };
+
+  const onSuccess = useCallback(async (public_token: string) => {
+    try {
+      setStep('connecting');
+      
+      const response = await fetch('https://pxglgxmcxaduyfuwwnxy.supabase.co/functions/v1/exchange-public-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ public_token }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to connect bank');
+      }
+
       setStep('success');
       setTimeout(() => {
         connectBank();
@@ -36,10 +78,21 @@ export const PlaidModal = ({ open, onOpenChange }: PlaidModalProps) => {
           title: t.success,
           description: t.successMessage,
         });
-        setStep('select'); // Reset for next time
+        // Reset for next time
+        setLinkToken(null);
+        setStep('loading');
       }, 1500);
-    }, 1000);
-  };
+    } catch (error) {
+      console.error('Error exchanging token:', error);
+      setStep('error');
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to connect bank');
+    }
+  }, [connectBank, onOpenChange, t.success, t.successMessage, toast]);
+
+  const { open: openPlaid, ready } = usePlaidLink({
+    token: linkToken,
+    onSuccess,
+  });
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -50,18 +103,26 @@ export const PlaidModal = ({ open, onOpenChange }: PlaidModalProps) => {
           </DialogTitle>
         </DialogHeader>
 
-        {step === 'select' && (
-          <div className="space-y-3 py-4">
-            {banks.map((bank) => (
-              <Button
-                key={bank.id}
-                variant="outline"
-                className="w-full h-16 text-lg hover:bg-primary hover:text-primary-foreground transition-colors"
-                onClick={() => handleBankSelect(bank.id)}
-              >
-                {bank.name}
-              </Button>
-            ))}
+        {step === 'loading' && (
+          <div className="flex flex-col items-center justify-center py-12">
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-primary mb-4"></div>
+            <p className="text-lg text-muted-foreground">Loading...</p>
+          </div>
+        )}
+
+        {step === 'ready' && (
+          <div className="space-y-4 py-4">
+            <p className="text-center text-muted-foreground">
+              Connect your bank account securely through Plaid
+            </p>
+            <Button
+              variant="default"
+              className="w-full h-16 text-lg"
+              onClick={() => openPlaid()}
+              disabled={!ready}
+            >
+              {t.selectBank}
+            </Button>
           </div>
         )}
 
@@ -78,6 +139,19 @@ export const PlaidModal = ({ open, onOpenChange }: PlaidModalProps) => {
               <Check className="h-12 w-12 text-success-foreground" />
             </div>
             <p className="text-lg font-medium">{t.successMessage}</p>
+          </div>
+        )}
+
+        {step === 'error' && (
+          <div className="flex flex-col items-center justify-center py-12">
+            <div className="rounded-full bg-destructive/10 p-4 mb-4">
+              <AlertCircle className="h-12 w-12 text-destructive" />
+            </div>
+            <p className="text-lg font-medium text-destructive mb-2">Connection Failed</p>
+            <p className="text-sm text-muted-foreground text-center mb-4">{errorMessage}</p>
+            <Button onClick={fetchLinkToken} variant="outline">
+              Try Again
+            </Button>
           </div>
         )}
       </DialogContent>

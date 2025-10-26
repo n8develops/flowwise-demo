@@ -29,7 +29,7 @@ const Pitch = () => {
         <Button
           onClick={() => navigate('/welcome')}
           size="lg"
-          className="h-16 px-8 text-lg font-semibold bg-white text-primary hover:bg-white/90 shadow-xl hover:shadow-2xl transition-all"
+          className="h-16 px-8 text-lg font-semibold bg-white text-[hsl(222.2,84%,4.9%)] hover:bg-white/90 shadow-xl hover:shadow-2xl transition-all"
         >
           {t.getStarted}
         </Button>

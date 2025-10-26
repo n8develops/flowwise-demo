@@ -14,6 +14,8 @@ const Transactions = () => {
   const navigate = useNavigate();
   const { userData } = useUserStore();
   const t = translations[userData.language].transactions;
+  const categoryMap = t.categories as Record<string, string>;
+  const paymentMap = t.paymentMethods as Record<string, string>;
   
   const transactions = useMemo(() => generateDetailedTransactions(), []);
   
@@ -117,11 +119,11 @@ const Transactions = () => {
                                 {transaction.alignmentScore > 0 ? '+' : ''}{transaction.alignmentScore}
                               </span>
                             </div>
-                            <p className="text-sm text-muted-foreground">{transaction.category}</p>
+                            <p className="text-sm text-muted-foreground">{categoryMap[transaction.category] || transaction.category}</p>
                             <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
                               <time dateTime={transaction.date}>{new Date(transaction.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
                               <span>•</span>
-                              <span>{transaction.paymentMethod}</span>
+                              <span>{paymentMap[transaction.paymentMethod] || transaction.paymentMethod}</span>
                             </div>
                             {transaction.description && (
                               <p className="text-xs text-muted-foreground mt-1 italic">{transaction.description}</p>
@@ -130,7 +132,7 @@ const Transactions = () => {
                         </div>
                         <div className="text-right ml-4 flex-shrink-0">
                           <span className={`text-lg font-bold ${transaction.amount > 0 ? 'text-success' : 'text-destructive'}`}>
-                            {transaction.amount > 0 ? '+' : ''}${Math.abs(transaction.amount).toFixed(2)}
+                            {transaction.amount > 0 ? '+$' : '-$'}{Math.abs(transaction.amount).toFixed(2)}
                           </span>
                           <p className="text-xs text-muted-foreground mt-1">{badge.text}</p>
                         </div>
@@ -208,7 +210,7 @@ const Transactions = () => {
                             <span className="text-lg" aria-hidden="true">{transaction.icon}</span>
                             <div>
                               <p className="text-sm font-medium">{transaction.merchant}</p>
-                              <p className="text-xs text-muted-foreground">{transaction.category}</p>
+                              <p className="text-xs text-muted-foreground">{categoryMap[transaction.category] || transaction.category}</p>
                             </div>
                           </div>
                           <span className="text-sm font-bold text-success">+{transaction.alignmentScore}</span>
@@ -230,7 +232,7 @@ const Transactions = () => {
                             <span className="text-lg" aria-hidden="true">{transaction.icon}</span>
                             <div>
                               <p className="text-sm font-medium">{transaction.merchant}</p>
-                              <p className="text-xs text-muted-foreground">{transaction.category}</p>
+                              <p className="text-xs text-muted-foreground">{categoryMap[transaction.category] || transaction.category}</p>
                             </div>
                           </div>
                           <span className="text-sm font-bold text-destructive">{transaction.alignmentScore}</span>

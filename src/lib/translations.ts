@@ -44,6 +44,25 @@ export const translations = {
       positive: "Helps Goal",
       negative: "Hurts Goal",
       neutral: "Neutral",
+      categories: {
+        'Food Delivery': 'Food Delivery',
+        'Groceries': 'Groceries',
+        'Entertainment': 'Entertainment',
+        'Gas': 'Gas',
+        'Shopping': 'Shopping',
+        'Coffee': 'Coffee',
+        'Bills': 'Bills',
+        'Income': 'Income',
+        'Subscriptions': 'Subscriptions',
+        'Dining': 'Dining'
+      },
+      paymentMethods: {
+        'Credit Card': 'Credit Card',
+        'Debit Card': 'Debit Card',
+        'PayPal': 'PayPal',
+        'Cash': 'Cash',
+        'Venmo': 'Venmo'
+      }
     },
     coach: {
       title: "Flowwise AI Coach 🤖",
@@ -164,6 +183,25 @@ export const translations = {
       positive: "Ayuda Meta",
       negative: "Perjudica Meta",
       neutral: "Neutral",
+      categories: {
+        'Food Delivery': 'Entrega de Comida',
+        'Groceries': 'Supermercado',
+        'Entertainment': 'Entretenimiento',
+        'Gas': 'Gasolina',
+        'Shopping': 'Compras',
+        'Coffee': 'Café',
+        'Bills': 'Facturas',
+        'Income': 'Ingresos',
+        'Subscriptions': 'Suscripciones',
+        'Dining': 'Restaurante'
+      },
+      paymentMethods: {
+        'Credit Card': 'Tarjeta de Crédito',
+        'Debit Card': 'Tarjeta de Débito',
+        'PayPal': 'PayPal',
+        'Cash': 'Efectivo',
+        'Venmo': 'Venmo'
+      }
     },
     coach: {
       title: "Entrenador IA de Flowwise 🤖",

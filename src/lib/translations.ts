@@ -45,24 +45,24 @@ export const translations = {
       negative: "Hurts Goal",
       neutral: "Neutral",
       categories: {
-        'Food Delivery': 'Food Delivery',
-        'Groceries': 'Groceries',
-        'Entertainment': 'Entertainment',
-        'Gas': 'Gas',
-        'Shopping': 'Shopping',
-        'Coffee': 'Coffee',
-        'Bills': 'Bills',
-        'Income': 'Income',
-        'Subscriptions': 'Subscriptions',
-        'Dining': 'Dining'
+        "Food Delivery": "Food Delivery",
+        Groceries: "Groceries",
+        Entertainment: "Entertainment",
+        Gas: "Gas",
+        Shopping: "Shopping",
+        Coffee: "Coffee",
+        Bills: "Bills",
+        Income: "Income",
+        Subscriptions: "Subscriptions",
+        Dining: "Dining",
       },
       paymentMethods: {
-        'Credit Card': 'Credit Card',
-        'Debit Card': 'Debit Card',
-        'PayPal': 'PayPal',
-        'Cash': 'Cash',
-        'Venmo': 'Venmo'
-      }
+        "Credit Card": "Credit Card",
+        "Debit Card": "Debit Card",
+        PayPal: "PayPal",
+        Cash: "Cash",
+        Venmo: "Venmo",
+      },
     },
     coach: {
       title: "Flowwise AI Coach 🤖",
@@ -76,7 +76,8 @@ export const translations = {
     },
     preview: {
       title: "Preview Adjustment",
-      optionAText: "If you pause $25 this week, you'll reach your $500 goal one week later — on April 12 instead of April 5.",
+      optionAText:
+        "If you pause $25 this week, you'll reach your $500 goal one week later — on April 12 instead of April 5.",
       optionBText: "If you save $10/week for the next 4 weeks, you'll stay on track without skipping your goal.",
       confirm: "✅ Confirm Adjustment",
       goBack: "🔙 Go Back",
@@ -91,8 +92,9 @@ export const translations = {
       backToDashboard: "Back to Dashboard",
     },
     pitch: {
-      headline: "Flowwise: AI that keeps saving human.",
-      tagline: "We help hourly, gig, and freelance workers stay on track with savings — even when life throws a curveball.",
+      headline: "Flowwise: AI that keeps saving, human.",
+      tagline:
+        "We help hourly, gig, and freelance workers stay on track with savings — even when life throws a curveball.",
       demoNotice: "Demo Application",
       getStarted: "Get Started",
     },
@@ -103,12 +105,14 @@ export const translations = {
       fomoTab: "Living Life",
       unexpectedTab: "Unexpected",
       fomoTitle: "Saving Without Missing Out",
-      fomoContent: "Saving money doesn't mean giving up the things you love. It's about making intentional choices that align with your goals while still enjoying life.",
+      fomoContent:
+        "Saving money doesn't mean giving up the things you love. It's about making intentional choices that align with your goals while still enjoying life.",
       fomoTip1: "Set aside a 'fun fund' — even $10/week adds up to experiences you value.",
       fomoTip2: "Find free or low-cost alternatives to expensive activities.",
       fomoTip3: "Remember: Your future self will thank you for the financial security you're building today.",
       unexpectedTitle: "Dealing with Unexpected Expenses",
-      unexpectedContent: "Life happens — car repairs, medical bills, or surprise costs are normal. The key is adjusting your plan without giving up entirely.",
+      unexpectedContent:
+        "Life happens — car repairs, medical bills, or surprise costs are normal. The key is adjusting your plan without giving up entirely.",
       unexpectedTip1: "Pause or reduce your savings temporarily instead of stopping completely.",
       unexpectedTip2: "Look for small ways to cut spending in other categories this month.",
       unexpectedTip3: "Get back on track as soon as possible — even small amounts count.",
@@ -184,24 +188,24 @@ export const translations = {
       negative: "Perjudica Meta",
       neutral: "Neutral",
       categories: {
-        'Food Delivery': 'Entrega de Comida',
-        'Groceries': 'Supermercado',
-        'Entertainment': 'Entretenimiento',
-        'Gas': 'Gasolina',
-        'Shopping': 'Compras',
-        'Coffee': 'Café',
-        'Bills': 'Facturas',
-        'Income': 'Ingresos',
-        'Subscriptions': 'Suscripciones',
-        'Dining': 'Restaurante'
+        "Food Delivery": "Entrega de Comida",
+        Groceries: "Supermercado",
+        Entertainment: "Entretenimiento",
+        Gas: "Gasolina",
+        Shopping: "Compras",
+        Coffee: "Café",
+        Bills: "Facturas",
+        Income: "Ingresos",
+        Subscriptions: "Suscripciones",
+        Dining: "Restaurante",
       },
       paymentMethods: {
-        'Credit Card': 'Tarjeta de Crédito',
-        'Debit Card': 'Tarjeta de Débito',
-        'PayPal': 'PayPal',
-        'Cash': 'Efectivo',
-        'Venmo': 'Venmo'
-      }
+        "Credit Card": "Tarjeta de Crédito",
+        "Debit Card": "Tarjeta de Débito",
+        PayPal: "PayPal",
+        Cash: "Efectivo",
+        Venmo: "Venmo",
+      },
     },
     coach: {
       title: "Entrenador IA de Flowwise 🤖",
@@ -215,7 +219,8 @@ export const translations = {
     },
     preview: {
       title: "Vista Previa del Ajuste",
-      optionAText: "Si pausas $25 esta semana, alcanzarás tu meta de $500 una semana después — el 12 de abril en lugar del 5 de abril.",
+      optionAText:
+        "Si pausas $25 esta semana, alcanzarás tu meta de $500 una semana después — el 12 de abril en lugar del 5 de abril.",
       optionBText: "Si ahorras $10/semana durante las próximas 4 semanas, te mantendrás en camino sin saltar tu meta.",
       confirm: "✅ Confirmar Ajuste",
       goBack: "🔙 Regresar",
@@ -231,7 +236,8 @@ export const translations = {
     },
     pitch: {
       headline: "Flowwise: IA que mantiene el ahorro humano.",
-      tagline: "Ayudamos a trabajadores por hora, autónomos y freelancers a mantenerse en camino con sus ahorros — incluso cuando la vida lanza curvas.",
+      tagline:
+        "Ayudamos a trabajadores por hora, autónomos y freelancers a mantenerse en camino con sus ahorros — incluso cuando la vida lanza curvas.",
       demoNotice: "Aplicación de Demostración",
       getStarted: "Comenzar",
     },
@@ -242,12 +248,14 @@ export const translations = {
       fomoTab: "Vivir la Vida",
       unexpectedTab: "Inesperado",
       fomoTitle: "Ahorrar Sin Perderte la Vida",
-      fomoContent: "Ahorrar dinero no significa renunciar a las cosas que amas. Se trata de tomar decisiones intencionales que se alineen con tus metas mientras disfrutas de la vida.",
+      fomoContent:
+        "Ahorrar dinero no significa renunciar a las cosas que amas. Se trata de tomar decisiones intencionales que se alineen con tus metas mientras disfrutas de la vida.",
       fomoTip1: "Reserva un 'fondo de diversión' — incluso $10/semana se acumulan para experiencias que valoras.",
       fomoTip2: "Encuentra alternativas gratuitas o de bajo costo a actividades costosas.",
       fomoTip3: "Recuerda: Tu yo futuro te agradecerá la seguridad financiera que estás construyendo hoy.",
       unexpectedTitle: "Lidiar con Gastos Inesperados",
-      unexpectedContent: "La vida pasa — reparaciones del auto, facturas médicas o costos sorpresa son normales. La clave es ajustar tu plan sin rendirte por completo.",
+      unexpectedContent:
+        "La vida pasa — reparaciones del auto, facturas médicas o costos sorpresa son normales. La clave es ajustar tu plan sin rendirte por completo.",
       unexpectedTip1: "Pausa o reduce tus ahorros temporalmente en lugar de detenerte completamente.",
       unexpectedTip2: "Busca pequeñas formas de reducir gastos en otras categorías este mes.",
       unexpectedTip3: "Vuelve al camino lo antes posible — incluso pequeñas cantidades cuentan.",

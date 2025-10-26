@@ -237,8 +237,8 @@ const Transactions = () => {
                           </div>
                           <TooltipProvider>
                             <UITooltip>
-                              <TooltipTrigger asChild>
-                                <span className="text-sm font-bold text-success cursor-help">+{transaction.alignmentScore}</span>
+                              <TooltipTrigger className="text-sm font-bold text-success cursor-help">
+                                +{transaction.alignmentScore}
                               </TooltipTrigger>
                               <TooltipContent>
                                 <p className="text-xs">
@@ -272,8 +272,8 @@ const Transactions = () => {
                           </div>
                           <TooltipProvider>
                             <UITooltip>
-                              <TooltipTrigger asChild>
-                                <span className="text-sm font-bold text-destructive cursor-help">{transaction.alignmentScore}</span>
+                              <TooltipTrigger className="text-sm font-bold text-destructive cursor-help">
+                                {transaction.alignmentScore}
                               </TooltipTrigger>
                               <TooltipContent>
                                 <p className="text-xs">

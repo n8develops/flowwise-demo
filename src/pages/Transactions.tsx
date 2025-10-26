@@ -5,10 +5,11 @@ import { LanguageToggle } from "@/components/LanguageToggle";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useUserStore } from "@/stores/userStore";
 import { translations } from "@/lib/translations";
-import { ArrowLeft, Sparkles, TrendingUp, TrendingDown } from "lucide-react";
+import { ArrowLeft, Sparkles, TrendingUp, TrendingDown, HelpCircle } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import { generateDetailedTransactions } from "@/utils/mockDataGenerator";
 import { useMemo } from "react";
+import { Tooltip as UITooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const Transactions = () => {
   const navigate = useNavigate();
@@ -195,7 +196,28 @@ const Transactions = () => {
               <Card className="relative overflow-hidden border-none shadow-xl" role="region" aria-labelledby="insights-heading">
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent" aria-hidden="true" />
                 <CardContent className="relative p-6 space-y-6">
-                  <h3 id="insights-heading" className="text-xl font-bold">{t.insights}</h3>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 id="insights-heading" className="text-xl font-bold">{t.insights}</h3>
+                    <TooltipProvider>
+                      <UITooltip>
+                        <TooltipTrigger asChild>
+                          <HelpCircle className="h-5 w-5 text-muted-foreground cursor-help" />
+                        </TooltipTrigger>
+                        <TooltipContent className="max-w-xs">
+                          <p className="text-sm">
+                            {userData.language === 'en' 
+                              ? 'Alignment points show how your spending relates to your financial goals. Positive points (+) mean spending that supports your goals, while negative points (-) indicate spending that may hinder your progress.'
+                              : 'Los puntos de alineación muestran cómo tus gastos se relacionan con tus objetivos financieros. Los puntos positivos (+) significan gastos que apoyan tus objetivos, mientras que los puntos negativos (-) indican gastos que pueden obstaculizar tu progreso.'}
+                          </p>
+                        </TooltipContent>
+                      </UITooltip>
+                    </TooltipProvider>
+                  </div>
+                  <p className="text-sm text-muted-foreground -mt-2">
+                    {userData.language === 'en'
+                      ? 'Track which transactions align with or hurt your financial goals.'
+                      : 'Rastrea qué transacciones se alinean o perjudican tus objetivos financieros.'}
+                  </p>
                   
                   {/* Aligning with Goals */}
                   <div>
@@ -213,7 +235,20 @@ const Transactions = () => {
                               <p className="text-xs text-muted-foreground">{categoryMap[transaction.category] || transaction.category}</p>
                             </div>
                           </div>
-                          <span className="text-sm font-bold text-success">+{transaction.alignmentScore}</span>
+                          <TooltipProvider>
+                            <UITooltip>
+                              <TooltipTrigger asChild>
+                                <span className="text-sm font-bold text-success cursor-help">+{transaction.alignmentScore}</span>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p className="text-xs">
+                                  {userData.language === 'en'
+                                    ? 'This purchase supports your goals'
+                                    : 'Esta compra apoya tus objetivos'}
+                                </p>
+                              </TooltipContent>
+                            </UITooltip>
+                          </TooltipProvider>
                         </div>
                       ))}
                     </div>
@@ -235,7 +270,20 @@ const Transactions = () => {
                               <p className="text-xs text-muted-foreground">{categoryMap[transaction.category] || transaction.category}</p>
                             </div>
                           </div>
-                          <span className="text-sm font-bold text-destructive">{transaction.alignmentScore}</span>
+                          <TooltipProvider>
+                            <UITooltip>
+                              <TooltipTrigger asChild>
+                                <span className="text-sm font-bold text-destructive cursor-help">{transaction.alignmentScore}</span>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p className="text-xs">
+                                  {userData.language === 'en'
+                                    ? 'This purchase may hinder your goals'
+                                    : 'Esta compra puede obstaculizar tus objetivos'}
+                                </p>
+                              </TooltipContent>
+                            </UITooltip>
+                          </TooltipProvider>
                         </div>
                       ))}
                     </div>

@@ -9,7 +9,7 @@ Built during **KnightHacks 2025**, our project demonstrates how AI-assisted deve
 
 **Live App:** [flowwise.us](https://flowwise.us) | [flowwise-demo.lovable.app](https://flowwise-demo.lovable.app)  
 **Hackathon:** KnightHacks 2025  
-**Team:** Flowwise  
+**Team:** Nate Louis, Darren Thompson, Adam Posey  
 
 ---
 

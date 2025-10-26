@@ -15,6 +15,7 @@ import Transparency from "./pages/Transparency";
 import Pitch from "./pages/Pitch";
 import Learning from "./pages/Learning";
 import GoalSetting from "./pages/GoalSetting";
+import Transactions from "./pages/Transactions";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const App = () => (
           <Route path="/preview" element={<Preview />} />
           <Route path="/transparency" element={<Transparency />} />
           <Route path="/learning" element={<Learning />} />
+          <Route path="/transactions" element={<Transactions />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

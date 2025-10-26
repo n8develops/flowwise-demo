@@ -2,7 +2,7 @@ export const translations = {
   en: {
     welcome: {
       title: "Welcome to Flowwise",
-      subtitle: "Your AI-powered savings coach that adapts to your life.",
+      subtitle: "AI that keeps saving, human",
       trustMessage: "Your data is private and encrypted. We never move your money without your OK.",
       connectPlaid: "Connect to Plaid",
       selectYourBank: "Select Your Bank",
@@ -30,6 +30,20 @@ export const translations = {
       topSpending: "Top Spending Category",
       thisWeek: "this week",
       talkToCoach: "Talk to Flowwise AI Coach 🤖",
+      recentTransactions: "Recent Transactions",
+      seeMoreTransactions: "See More Transactions",
+    },
+    transactions: {
+      title: "Transaction Details",
+      backToDashboard: "Back to Dashboard",
+      detailedTransactions: "Detailed Transactions",
+      aligningWithGoals: "Aligning with Goals",
+      hurtingGoals: "Hurting Your Goals",
+      goalAlignment: "Goal Alignment Over Time",
+      insights: "Transaction Insights",
+      positive: "Helps Goal",
+      negative: "Hurts Goal",
+      neutral: "Neutral",
     },
     coach: {
       title: "Flowwise AI Coach 🤖",
@@ -108,7 +122,7 @@ export const translations = {
   es: {
     welcome: {
       title: "Bienvenido a Flowwise",
-      subtitle: "Tu entrenador de ahorro con IA que se adapta a tu vida.",
+      subtitle: "IA que sigue ahorrando, humano",
       trustMessage: "Tus datos son privados y encriptados. Nunca movemos tu dinero sin tu permiso.",
       connectPlaid: "Conectar a Plaid",
       selectYourBank: "Selecciona Tu Banco",
@@ -136,6 +150,20 @@ export const translations = {
       topSpending: "Categoría de Mayor Gasto",
       thisWeek: "esta semana",
       talkToCoach: "Hablar con el Entrenador IA 🤖",
+      recentTransactions: "Transacciones Recientes",
+      seeMoreTransactions: "Ver Más Transacciones",
+    },
+    transactions: {
+      title: "Detalles de Transacciones",
+      backToDashboard: "Volver al Panel",
+      detailedTransactions: "Transacciones Detalladas",
+      aligningWithGoals: "Alineadas con Metas",
+      hurtingGoals: "Perjudicando Tus Metas",
+      goalAlignment: "Alineación de Metas en el Tiempo",
+      insights: "Información de Transacciones",
+      positive: "Ayuda Meta",
+      negative: "Perjudica Meta",
+      neutral: "Neutral",
     },
     coach: {
       title: "Entrenador IA de Flowwise 🤖",

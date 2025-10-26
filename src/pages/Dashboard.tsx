@@ -171,9 +171,9 @@ const Dashboard = () => {
         <Card className="relative overflow-hidden border-none shadow-xl" role="region" aria-labelledby="transactions-heading">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" aria-hidden="true" />
           <CardContent className="relative p-8">
-            <h3 id="transactions-heading" className="text-xl font-bold mb-6">Recent Transactions</h3>
+            <h3 id="transactions-heading" className="text-xl font-bold mb-6">{t.recentTransactions}</h3>
             <ul className="space-y-3" role="list">
-              <li className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
+              <li className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-accent/10 hover:shadow-md transition-all">
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-lg bg-destructive/20 flex items-center justify-center" aria-hidden="true">
                     🍔
@@ -185,7 +185,7 @@ const Dashboard = () => {
                 </div>
                 <span className="text-destructive font-bold" aria-label="Expense of 45 dollars">-$45.00</span>
               </li>
-              <li className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
+              <li className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-accent/10 hover:shadow-md transition-all">
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-lg bg-destructive/20 flex items-center justify-center" aria-hidden="true">
                     🛒
@@ -197,7 +197,7 @@ const Dashboard = () => {
                 </div>
                 <span className="text-destructive font-bold" aria-label="Expense of 120 dollars">-$120.00</span>
               </li>
-              <li className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
+              <li className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-accent/10 hover:shadow-md transition-all">
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-lg bg-destructive/20 flex items-center justify-center" aria-hidden="true">
                     ☕
@@ -209,7 +209,7 @@ const Dashboard = () => {
                 </div>
                 <span className="text-destructive font-bold" aria-label="Expense of 35 dollars">-$35.00</span>
               </li>
-              <li className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors">
+              <li className="flex justify-between items-center p-4 bg-background/50 rounded-lg hover:bg-accent/10 hover:shadow-md transition-all">
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-lg bg-success/20 flex items-center justify-center" aria-hidden="true">
                     💰
@@ -222,6 +222,13 @@ const Dashboard = () => {
                 <span className="text-success font-bold" aria-label="Income of 1200 dollars">+$1,200.00</span>
               </li>
             </ul>
+            <Button
+              onClick={() => navigate('/transactions')}
+              variant="outline"
+              className="w-full mt-6 border-2 hover:border-primary hover:bg-primary/5"
+            >
+              {t.seeMoreTransactions}
+            </Button>
           </CardContent>
         </Card>
 
